@@ -6,6 +6,13 @@ La configuration d'exemple exporte toute les dernières factures pour une pério
 
 Le lancement de la mise à jour se fait via un menu ajouté.
 
+<img width="229" alt="Capture d’écran 2021-03-30 à 14 39 51" src="https://user-images.githubusercontent.com/369622/112989995-d834de80-9165-11eb-9d7a-8a43633d801c.png">
+
+# Installation
+
+- Copier le contenu de Code.gs dans l'éditeur de script.
+- Installer la [bibliothèque oAuth1 pour Google Apps Script](https://github.com/googleworkspace/apps-script-oauth1). 
+
 # TODO 
 
 - Utilisation de la pagination (seulement les 1000 dernières par défaut)
