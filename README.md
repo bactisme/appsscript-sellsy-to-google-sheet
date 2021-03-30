@@ -16,7 +16,7 @@ Le lancement de la mise à jour se fait via un menu ajouté.
 - Créé la feuille de résultat
 - Vérifier la section CUSTOM pour les paramètres
 
-# TODO 
+# TODO / Limitations 
 
-- Utilisation de la pagination (seulement les 1000 dernières par défaut)
-- Mise à jour ligne par ligne en gardant l'ID du document.
+- Utilisation de la pagination (seulement les 1000 derniers documents pour l'instant)
+- Mode de mise à jour ligne par ligne en gardant chaque document dans sa ligne avec son id.
