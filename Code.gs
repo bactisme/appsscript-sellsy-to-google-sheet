@@ -2,6 +2,9 @@
 /** --- CONFIGURATION --- */
 
 /*
+// Code ans documentation at : 
+// https://github.com/bactisme/appsscript-sellsy-to-gsheet
+
 1/ Add the oAuth1 Library :  
 - Check last version here : https://github.com/googleworkspace/apps-script-oauth1
 - or add library 1CXDCY5sqT9ph64fFwSzVtXnbjpSfWdRymafDrtIZ7Z_hwysTY7IIhi7s
@@ -19,12 +22,16 @@ var ACCESS_TOKEN =
 - The script only take 1000 first invoices (only first api page)
 - See search param (date > 01-01-2021)
 - docs : https://api.sellsy.fr/documentation/methodes
+
+5/ WIP 
+// configuration screen
+
 */
 
 /** --- CUSTOM --- */
 
 var PRINT_COLUMNS = "ident,displayedDate,formatted_created,formatted_payDateCustom,thirdname,subject,totalAmountTaxesFree,taxesAmountSum,totalAmount,smartTags,step_label";
-var RESULTS_SHEET = "Factures";
+var RESULTS_SHEET = "Factures 2021";
 var FILTER_FUNCTION = "field_filter";
 var START_ROW = 2;
 
@@ -68,10 +75,35 @@ const DEFAULT_ENDPOINT = 'https://apifeed.sellsy.com/0';
 
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
-  // Or DocumentApp or FormApp.
-  ui.createMenu('Mise à jour')
+  ui.createMenu('SellSy')
       .addItem('Mise à jour depuis SellSy', 'getInvoice')
+      //.addSeparator()
+      //.addItem('Paramétrage', 'setupScreen')
       .addToUi();
+}
+
+/**
+ * Receive Webhook
+ */
+function doGet(e) {
+  var ss = SpreadsheetApp.getActive();
+  Logger.log(e);
+  getInvoice();
+  return ContentService.createTextOutput(ss.getName());
+}
+
+function doPost(e) {
+  Logger.log(e);
+  return HtmlService.createHtmlOutput("post request received");
+}
+
+function setupScreen() {
+  var documentProperties = PropertiesService.getDocumentProperties();
+  var start_date = documentProperties.getProperty('start_date');
+
+  var ui = SpreadsheetApp.getUi();
+  
+  start_date = ui.prompt('Date de début', 'Sous la forme DD/MM/YYYY', ui.ButtonSet.OK);
 }
 
 function logCallbackUrl() {
@@ -109,7 +141,7 @@ function getInvoice(){
     }
     // print data
     var row = START_ROW+1;
-    for(var line in invoices) {
+    for(var line in invoices) {
       for(var d = 0; d < columns.length; d++){
         var column_name = columns[d];
         var data = invoices[line][column_name];
@@ -120,7 +152,7 @@ function getInvoice(){
       }
       row++;
     }
-    sheet.getRange(1,1).setValue("Maj : "+Utilities.formatDate(new Date(), "GMT+1", "MM/dd/yyyy HH:mm"));
+    sheet.getRange(1,1).setValue("Maj : "+Utilities.formatDate(new Date(), SpreadsheetApp.getActiveSpreadsheet().getSpreadsheetTimeZone(), "dd/MM/yyyy HH:mm"));
   }
 }
 
