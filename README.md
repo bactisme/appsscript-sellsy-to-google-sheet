@@ -12,11 +12,10 @@ Le lancement de la mise à jour se fait via un menu ajouté.
 
 - Copier le contenu de Code.gs dans l'éditeur de script.
 - Installer la [bibliothèque oAuth1 pour Google Apps Script](https://github.com/googleworkspace/apps-script-oauth1). 
-- Définir les clés
-- Créé la feuille de résultat
-- Vérifier la section CUSTOM pour les paramètres
+- Faire tourner une première fois avec le menu pour créer la feuille de configuration
+- Configurer
+- Enjoy
 
 # TODO / Limitations 
 
-- Utilisation de la pagination (seulement les 1000 derniers documents pour l'instant)
 - Mode de mise à jour ligne par ligne en gardant chaque document dans sa ligne avec son id.
