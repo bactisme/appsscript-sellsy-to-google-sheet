@@ -2,7 +2,7 @@
 
 Ce script est un exemple de l'utilisation de l'API SellSy pour mettre à jour une feuille dans google sheet avec les données SellSy.
 
-La configuration d'exemple exporte toute les dernières factures pour une période donnée (exemple sur 2021) dans une feuille google sheet.
+La configuration se fait dans une feuille avec pour nom "Configuration".
 
 Le lancement de la mise à jour se fait via un menu ajouté.
 
