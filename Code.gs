@@ -52,10 +52,14 @@ function setupConfigurationSheet(){
   END_DATE =  sheet.getRange(iconf++,2).getValue();  
   END_DATE = (new Date(END_DATE).getTime())/1000;
 
+  DEFAULT_GET_LIST_SEARCH = {
+    periodecreationDate_start: START_DATE,
+    periodecreationDate_end: END_DATE,
+  }
 }
 
 /**
- * Filter known column
+ * Filter known problematic columns
  */
 function field_filter(column_name, data){
   if (column_name == "smartTags"){
@@ -88,9 +92,9 @@ function sort_function(a, b){
   return 0;
 }
 
-const DEFAULT_GET_LIST_SEARCH = {
-  periodecreationDate_start: START_DATE,
-  periodecreationDate_end: END_DATE,
+var DEFAULT_GET_LIST_SEARCH = {
+  periodecreationDate_start: +((new Date(2022,0,1)).getTime()/1000),
+  periodecreationDate_end: +((new Date(2022,11,31)).getTime()/1000)
 }
 
 const DEFAULT_GET_LIST_PAGINATION = {
@@ -247,7 +251,7 @@ function getDocument(docType, search=DEFAULT_GET_LIST_SEARCH, pagination=DEFAULT
 /**
  * Do a request on SellSy API
  */
-function makeSellSyRequest(method, params, pagination){
+function makeSellSyRequest(method, params){
 
   const postData = {
     request: 1,
